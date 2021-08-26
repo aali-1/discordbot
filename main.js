@@ -1,7 +1,12 @@
 const Discord = require('discord.js');
 const {MessageEmbed} = require('discord.js');
 const client = new Discord.Client({partials:['MESSAGE']});
- 
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
+app.listen(port);
+
 const prefix = '!';
  
 const fs = require('fs');
