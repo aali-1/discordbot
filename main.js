@@ -24,6 +24,11 @@ client.once('ready', () => {
 client.on('messageDelete', message => {
     help=message
 });
+
+client.on('messageUpdate', (oldMessage, newMessage) => { 
+    edited=oldMessage
+});
+
 client.on('message', message =>{
     if(!message.content.startsWith(prefix) || message.author.bot) return;
  
@@ -47,6 +52,22 @@ client.on('message', message =>{
     } 
     if(command.includes('randomize')){
         client.commands.get('randomize').execute(message, args);
+    }
+    if(command.includes('unedit')){
+        const channel = client.channels.cache.get(message.channel.id);
+        if (typeof edited === 'undefined') {
+            
+          } 
+        else {
+            if(edited){
+                const embed = new MessageEmbed()
+                    .setColor('#0099ff')
+                    .setAuthor(edited.author.username,edited.author.avatarURL({dynamic : true}))
+                    .setDescription(edited.content)
+                    .setTimestamp();
+                channel.send(embed);
+            }
+          }
     }
     if(command.includes('randomise')){
         client.commands.get('randomize').execute(message, args);
