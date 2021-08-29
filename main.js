@@ -27,6 +27,7 @@ client.on('messageDelete', message => {
 
 client.on('messageUpdate', (oldMessage, newMessage) => { 
     edited=oldMessage
+    console.log("edited")
 });
 
 client.on('message', message =>{
