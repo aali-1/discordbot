@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const {MessageEmbed} = require('discord.js');
+const {MessageAttachment} = require('discord.js');
 const client = new Discord.Client({partials:['MESSAGE']});
 let port = process.env.PORT;
 
@@ -7,6 +8,7 @@ let port = process.env.PORT;
 const prefix = '!';
  
 const fs = require('fs');
+const { url } = require('inspector');
  
 client.commands = new Discord.Collection();
  
@@ -27,7 +29,6 @@ client.on('messageDelete', message => {
 
 client.on('messageUpdate', (oldMessage, newMessage) => { 
     edited=oldMessage
-    console.log("edited")
 });
 
 client.on('message', message =>{
@@ -40,15 +41,26 @@ client.on('message', message =>{
         client.commands.get('ping').execute(message, args);
     }
     if(command === 'replay'){
-        console.log('replay')
         const channel = client.channels.cache.get(message.channel.id);
-        if(help){
-            const embed = new MessageEmbed()
+        if(channel == client.channels.cache.get(help.channel.id)){
+            if(help.attachments.array().length > 0){
+                const result = help.attachments.array()
+                const embed = new MessageEmbed()
+                .setColor('#0099ff')
+                .setImage(result[0].proxyURL)
+                .setAuthor(help.author.username,help.author.avatarURL({dynamic : true}))
+                .setDescription(help.content)
+                .setTimestamp();
+                channel.send(embed)  
+            }
+            else{
+                const embed = new MessageEmbed()
                 .setColor('#0099ff')
                 .setAuthor(help.author.username,help.author.avatarURL({dynamic : true}))
                 .setDescription(help.content)
                 .setTimestamp();
-            channel.send(embed);
+                channel.send(embed)
+                }
         }
     } 
     if(command.includes('randomize')){
@@ -76,4 +88,4 @@ client.on('message', message =>{
 });
  
 
-client.login(process.env.DJS_TOKEN);
+client.login('NzcxMTkyMDc1ODE4NzYyMjcw.X5oilg.8Dgd9Pz8iHc_Pymodb-Fj32FabY');
