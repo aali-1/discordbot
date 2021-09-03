@@ -42,7 +42,11 @@ client.on('message', message =>{
     }
     if(command === 'replay'){
         const channel = client.channels.cache.get(message.channel.id);
-        if(channel == client.channels.cache.get(help.channel.id)){
+        if (typeof help === 'undefined') {
+            
+        }
+        else{
+            if(channel == client.channels.cache.get(help.channel.id)){
             if(help.attachments.array().length > 0){
                 const result = help.attachments.array()
                 const embed = new MessageEmbed()
@@ -61,6 +65,7 @@ client.on('message', message =>{
                 .setTimestamp();
                 channel.send(embed)
                 }
+            }
         }
     } 
     if(command.includes('randomize')){
