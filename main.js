@@ -24,6 +24,7 @@ client.once('ready', () => {
 });
  
 client.on('messageDelete', message => {
+    if(message.content == '.') return;
     if(message.author.bot) return;
     help=message
 });
