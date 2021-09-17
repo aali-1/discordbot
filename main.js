@@ -73,6 +73,9 @@ client.on('message', message =>{
     if(command.includes('randomize')){
         client.commands.get('randomize').execute(message, args);
     }
+    if(command.includes('Luna')){
+        client.commands.get('Luna').execute(message, args);
+    }
     if(command.includes('unedit')){
         const channel = client.channels.cache.get(message.channel.id);
         if (typeof edited === 'undefined') {
