@@ -73,7 +73,8 @@ client.on('message', message =>{
     if(command.includes('randomize')){
         client.commands.get('randomize').execute(message, args);
     }
-    if(command.includes('Luna')){
+    if(command.includes('luna')){
+        console.log("hi");
         client.commands.get('Luna').execute(message, args);
     }
     if(command.includes('unedit')){
