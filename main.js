@@ -99,4 +99,4 @@ client.on('message', message =>{
 });
  
 
-client.login('NzcxMTkyMDc1ODE4NzYyMjcw.X5oilg.8Dgd9Pz8iHc_Pymodb-Fj32FabY');
+client.login(process.env.DJS_TOKEN);
