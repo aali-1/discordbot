@@ -73,7 +73,7 @@ client.on('message', message =>{
     if(command.includes('randomize')){
         client.commands.get('randomize').execute(message, args);
     }
-    if(command.includes('luna')){
+    if(command.includes('luna') || command.includes('bisharp')){
         console.log("hi");
         client.commands.get('Luna').execute(message, args);
     }
