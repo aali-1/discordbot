@@ -29,7 +29,7 @@ function findpls(array,elements){
 module.exports = {
     name: 'randomize',
     description: "randomizes a bunch of names",
-    execute(message, args){
+    execute(client, message, args){
         array1 = args
         yeet = array1[0]
         elements = 0

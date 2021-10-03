@@ -1,7 +1,7 @@
 module.exports = {
     name: 'help',
     description: "kys",
-    execute(message, args){
+    execute(client, message, args){
         message.channel.send("fuck off");
     }
 }
