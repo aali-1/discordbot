@@ -15,4 +15,4 @@ client.events = new Discord.Collection();
  
 
 
-client.login(process.env.DJS_TOKEN);
+client.login('NzcxMTkyMDc1ODE4NzYyMjcw.X5oilg.8Dgd9Pz8iHc_Pymodb-Fj32FabY');
