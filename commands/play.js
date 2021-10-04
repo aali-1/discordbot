@@ -51,7 +51,6 @@ module.exports = {
                     connection: null,
                     songs: []
                 }
-                console.log(queue)
                 //Add our key and value pair into the global queue. We then use this to get our server queue.
                 queue.set(message.guild.id, queue_constructor);
                 queue_constructor.songs.push(song);
