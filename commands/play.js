@@ -3,7 +3,7 @@ const {MessageEmbed} = require('discord.js');
 
 module.exports = {
     name: 'play',
-    aliases: ['stop','queue','skip','pl','q',`3d`, `bassboost`, `echo`, `karaoke`, `nightcore`, `vaporwave`,'pause','resume'],
+    aliases: ['stop','queue','skip','pl','q','3d', 'bassboost', 'echo', 'karaoke', 'nightcore', 'vaporwave','pause','resume'],
     description: "entire music bot",
     async execute(client, message, args, Discord, cmd){
         const voice_channel = message.member.voice.channel;
@@ -37,8 +37,8 @@ module.exports = {
                 `**${id + 1}**. ${song.name} - \`${song.formattedDuration}\``
             ).slice(0, 30).join("\n"));
         }
-        if ([`3d`, `bassboost`, `echo`, `karaoke`, `nightcore`, `vaporwave`].includes(cmd)) {
-            let filter = client.distube.setFilter(message, command);
+        if (['3d', 'bassboost', 'echo', 'karaoke', 'nightcore', 'vaporwave'].includes(cmd)) {
+            let filter = client.distube.setFilter(message, cmd);
             message.channel.send("Current queue filter: " + (filter || "Off"));
         }
         
