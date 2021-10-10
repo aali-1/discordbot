@@ -6,6 +6,11 @@ module.exports = {
     aliases: ['stop','queue','skip','pl','q',`3d`, `bassboost`, `echo`, `karaoke`, `nightcore`, `vaporwave`,'pause','resume'],
     description: "entire music bot",
     async execute(client, message, args, Discord, cmd){
+        const voice_channel = message.member.voice.channel;
+        if (!voice_channel) return message.channel.send('join a vc first...');
+        const permissions = voice_channel.permissionsFor(message.client.user);
+        if (!permissions.has('CONNECT')) return message.channel.send('You dont have the correct permissions');
+        if (!permissions.has('SPEAK')) return message.channel.send('You are not allowed to speak in this channel .');
         const arg = args.join(" ");
         if (['play', 'pl'].includes(cmd)){
             client.distube.play(message, arg);
