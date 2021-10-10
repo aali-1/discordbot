@@ -14,7 +14,7 @@ module.exports = {
                     .setAuthor(edited.author.username,edited.author.avatarURL({dynamic : true}))
                     .setDescription(edited.content)
                     .setTimestamp();
-                message.channel.send(embed);
+                message.channel.send({embeds: [embed]})
             }
         }
     }
