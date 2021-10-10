@@ -39,23 +39,5 @@ module.exports = {
             message.channel.send("Current queue filter: " + (filter || "Off"));
         }
         const status = (queue) => `Filter: \`${queue.filter || "Off"}\` | Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "All Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
-        client.distube
-            .on("initQueue", queue => {
-                queue.autoplay = false;
-            })
-            .on("addSong", (message, queue, song) => message.channel.send(
-                `Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${message.author.username}`
-            ))
-            .on("playList", (message, queue, playlist, song) => message.channel.send(
-                `Play \`${playlist.name}\` playlist (${playlist.songs.length} songs).\nRequested by: ${message.author.username}\nNow playing \`${song.name}\` - \`${song.formattedDuration}\`\n${status(queue)}`
-            ))
-            .on("addList", (message, queue, playlist) => message.channel.send(
-                `Added \`${playlist.name}\` playlist (${playlist.songs.length} songs) to queue\n${status(queue)}`
-            ))
-            .on("error", (message, e) => {
-                console.error(e)
-                message.channel.send("An error encountered: " + e);
-            })
-            .on("finish", message => message.channel.send("No more songs in queue"));
     }
 }
