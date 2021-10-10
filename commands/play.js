@@ -24,9 +24,7 @@ module.exports = {
         }
         if (cmd == "skip"){
             client.distube.skip(message);
-            client.distube.on("playSong", (message, queue, song) => message.channel.send(
-                `🎶 Now playing \`${song.name}\` - \`${song.formattedDuration}\`\nRequested by: ${message.author.username}\n${status(queue)}`
-            ))
+            message.channel.send("Skipped .")
         }
         if (['q', 'queue'].includes(cmd)) {
             let queue = client.distube.getQueue(message);
@@ -38,6 +36,6 @@ module.exports = {
             let filter = client.distube.setFilter(message, command);
             message.channel.send("Current queue filter: " + (filter || "Off"));
         }
-        const status = (queue) => `Filter: \`${queue.filter || "Off"}\` | Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "All Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
+        
     }
 }
