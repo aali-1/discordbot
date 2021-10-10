@@ -4,7 +4,7 @@ const client = new Discord.Client({partials:['MESSAGE']});
 let port = process.env.PORT;
 
 const distube = require('distube');
-client.distube = new distube(client, { searchSongs: false, emitNewSongOnly: true,});
+client.distube = new distube(client, { searchSongs: false, emitNewSongOnly: true, youtubeCookie: 'RUL=EJfj-IIGGJfK_ZEGIi8BNmGQ4_ZSwhrmTLGIQdawAhNaQ5SDhcyPfXpKiqLn_3ZKJA3K3ghJZ70de8JX4Q|cs=AP6Md-XWICEOCpiYsbe01hgn3M_f; IDE=AHWqTUkcQnco-uU0DEo2WCiBQEifTuFo_k7fUJPclp_g8pywmBVfLxCBekyzl2C5'});
 
 global.deleted = undefined;
 global.edited = undefined;
