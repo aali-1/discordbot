@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const config = require('./config.json');
+//const config = require('./config.json');
 const client = new Discord.Client({partials:['MESSAGE'],intents: ["GUILDS", "GUILD_MESSAGES","GUILD_MESSAGE_REACTIONS","GUILD_VOICE_STATES"]});
 
 const { SpotifyPlugin } = require("@distube/spotify");
