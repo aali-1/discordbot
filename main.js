@@ -46,4 +46,4 @@ client.distube
     })
     .on("finish", queue => queue.textChannel.send("No more songs in queue"));
 
-client.login(config.token);
+client.login(process.env.DJS_TOKEN);

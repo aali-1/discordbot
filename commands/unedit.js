@@ -8,7 +8,7 @@ module.exports = {
             
           } 
         else {
-            if(edited){
+            if(edited.channel.id===message.channel.id){
                 const embed = new MessageEmbed()
                     .setColor('#0099ff')
                     .setAuthor(edited.author.username,edited.author.avatarURL({dynamic : true}))
