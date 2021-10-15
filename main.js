@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-console.log(Discord.version);
+const config = require('./config.json');
 const client = new Discord.Client({partials:['MESSAGE'],intents: ["GUILDS", "GUILD_MESSAGES","GUILD_MESSAGE_REACTIONS","GUILD_VOICE_STATES"]});
 
 const { SpotifyPlugin } = require("@distube/spotify");
@@ -46,4 +46,4 @@ client.distube
     })
     .on("finish", queue => queue.textChannel.send("No more songs in queue"));
 
-client.login('NzcxMTkyMDc1ODE4NzYyMjcw.X5oilg.8Dgd9Pz8iHc_Pymodb-Fj32FabY');
+client.login(config.token);
