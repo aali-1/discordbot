@@ -16,7 +16,7 @@
     "@distube/soundcloud": "^0.2.2",
     "@distube/spotify": "^0.6.4",
     "discord.js": "^13.2.0",
-    "distube": "^3.0.0-beta.39",
+    "distube": "^3.0.0-beta.40",
     "ffmpeg-static": "^4.4.0",
     "libsodium-wrappers": "^0.7.9",
     "yt-search": "^2.10.1",
