@@ -75,6 +75,7 @@ module.exports = {
         
         }
         if (['q', 'queue'].includes(cmd)) {
+            if(!queue) return;
             const queuestring = String(queue.songs.map((song, id) =>`**${id + 1}**. ${song.name} - \`${song.formattedDuration}\``).slice(0, 30).join("\n"));
             const q_embed = new MessageEmbed()
                 .setColor('#0099ff')
