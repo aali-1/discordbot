@@ -51,6 +51,7 @@ module.exports = {
             message.channel.send("Stopped ur music");
         }
         if (cmd=="np"){
+            if (!queue) return message.channel.send(`There is nothing in the queue right now`)
             s=queue.songs[0]
             const np_embed = new MessageEmbed()
                 .setColor('#0099ff')
@@ -86,8 +87,8 @@ module.exports = {
                 .setDescription(queuestring);
             message.channel.send({embeds:[q_embed]})
         }
-
         if (['3d', 'bassboost', 'echo', 'karaoke', 'nightcore', 'vaporwave'].includes(cmd)) {
+            if (!queue) return message.channel.send(`There is nothing in the queue right now`)
             let filter = client.distube.setFilter(message, cmd);
             message.channel.send("Current queue filter: " + (filter || "Off"));
         }
