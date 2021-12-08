@@ -67,12 +67,15 @@ module.exports = {
             message.channel.send({embeds:[np_embed]});
         }
         if (cmd == "skip"){
-            if (queue) {
-                if(queue.songs.length === 1 || queue.songs.length === 0) return client.distube.stop(message);    
+            if (!queue) return message.channel.send(`There is nothing in the queue right now`)
+            try {
+                const song = queue.skip()
+                message.channel.send(`Skipped .`)
+            } 
+            catch (e) {
+                message.channel.send(`${client.emotes.error} | ${e}`)
             }
-            client.distube.skip(message);
-            message.reply({content:"Skipped .",allowedMentions: { repliedUser: false }});
-        
+            
         }
         if (['q', 'queue'].includes(cmd)) {
             if(!queue) return;
