@@ -5,7 +5,7 @@ module.exports = {
     description: "see the unedited message",
     execute(client, message, args){
         if (typeof edited === 'undefined') {
-            
+            return;
           } 
         else {
             if(edited.channel.id===message.channel.id){

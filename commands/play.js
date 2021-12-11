@@ -47,6 +47,7 @@ module.exports = {
             
         }
         if (cmd == "stop") {
+            if (!queue) return;
             client.distube.stop(message);
             message.channel.send("Stopped ur music");
         }
@@ -68,7 +69,7 @@ module.exports = {
             message.channel.send({embeds:[np_embed]});
         }
         if (cmd == "skip"){
-            if (!queue) return message.channel.send(`There is nothing in the queue right now`)
+            if (!queue) return;
             try {
                 const song = queue.skip()
                 message.channel.send(`Skipped .`)
