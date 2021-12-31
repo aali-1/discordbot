@@ -47,4 +47,4 @@ client.distube
     })
     .on("finish", queue => queue.textChannel.send("No more songs in queue"));
 
-client.login(process.env.DJS_TOKEN);
+client.login('NzcxMTkyMDc1ODE4NzYyMjcw.X5oilg.Kkkqxx2qq37jUO9BJfoOGA7_gto');
