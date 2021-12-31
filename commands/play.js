@@ -70,14 +70,19 @@ module.exports = {
         }
         if (cmd == "skip"){
             if (!queue) return;
-            try {
-                const song = queue.skip()
-                message.channel.send(`Skipped .`)
-            } 
-            catch (e) {
-                message.channel.send(`${client.emotes.error} | ${e}`)
+            if(queue.songs.length==1){
+                client.distube.stop(message)
+
             }
-            
+            else{
+                try {
+                    const song = queue.skip()
+                    message.channel.send(`Skipped .`)
+                } 
+                catch (e) {
+                    message.channel.send(`${client.emotes.error} | ${e}`)
+                }
+            }
         }
         if (['q', 'queue'].includes(cmd)) {
             if(!queue) return;
