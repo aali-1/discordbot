@@ -22,5 +22,4 @@ client.events = new Discord.Collection();
 })
  
 
-//client.login(process.env.DJS_TOKEN);
-client.login('NzcxMTkyMDc1ODE4NzYyMjcw.X5oilg.Q5wl_3sZZ-n2EGpoQReEEGhxICU');
+client.login(process.env.DJS_TOKEN);
