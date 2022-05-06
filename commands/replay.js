@@ -4,13 +4,16 @@ module.exports = {
     name: 'replay',
     description: "replay a deleted message",
     execute(client, message, args){
-        test=Array.from(deleted.attachments)
+        //console.log(message)
+        deleted=global.Deleted[message.channel.id];
         if (typeof deleted === 'undefined') {
             
         }
         else{
+            test=Array.from(deleted.attachments)
             if(message.channel.id == deleted.channel.id){
             if(test.length > 0){
+                test=Array.from(deleted.attachments)
                 const embed = new MessageEmbed()
                 .setColor('#0099ff')
                 .setImage(test[0][1].proxyURL)

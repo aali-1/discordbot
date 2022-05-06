@@ -4,6 +4,7 @@ module.exports = {
     aliases: ['unedi'],
     description: "see the unedited message",
     execute(client, message, args){
+        edited=global.Edited[message.channel.id];
         if (typeof edited === 'undefined') {
             return;
           } 
