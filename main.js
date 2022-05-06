@@ -26,5 +26,4 @@ client.events = new Discord.Collection();
     require(`./handlers/${handler}`)(client, Discord);
 })
  
-client.login('NzcxMTkyMDc1ODE4NzYyMjcw.X5oilg.pFLyi5-9-_QwwCX_qdVx6OF1Ers')
-//client.login(process.env.DJS_TOKEN);
+client.login(process.env.DJS_TOKEN);
