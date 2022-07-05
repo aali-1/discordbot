@@ -7,7 +7,7 @@ module.exports = (client, message, deleted)=>{
         if(deleted.content.length==1) return;
     }
     catch{
-        console.log('help')
+        return;
     }
     var id = deleted.channel.id;
     global.Deleted[id]=deleted;
