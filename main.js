@@ -26,4 +26,5 @@ client.events = new Discord.Collection();
     require(`./handlers/${handler}`)(client, Discord);
 })
  
+//test
 client.login(process.env.DJS_TOKEN);
