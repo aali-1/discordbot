@@ -27,4 +27,4 @@ client.events = new Discord.Collection();
 })
  
 //test
-client.login(process.env.DJS_TOKEN);
+client.login("NzcxMTkyMDc1ODE4NzYyMjcw.GoClIU.91VfIpfpawbhLLQqVheP91yPyavBg7k_qey6CI");
