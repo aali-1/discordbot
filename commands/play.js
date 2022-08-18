@@ -1,22 +1,27 @@
 const distube = require('distube');
-const {MessageEmbed} = require('discord.js');
+const {EmbedBuilder} = require('discord.js');
 
 module.exports = {
     name: 'play',
-    aliases: ['stop','queue','skip','pl','q','3d', 'bassboost', 'echo', 'karaoke', 'nightcore', 'vaporwave','pause','resume','np','remove'],
+    aliases: ['stop','queue','skip','pl','q','3d', 'bassboost', 'echo', 'karaoke', 'nightcore', 'vaporwave','pause','resume','np','remove','nowplaying'],
     description: "entire music bot",
     async execute(client, message, args, Discord, cmd){
+    
         const voice_channel = message.member.voice.channel;
         if (!voice_channel) return message.channel.send('join a vc first...');
         const permissions = voice_channel.permissionsFor(message.client.user);
         if (!permissions.has('CONNECT')) return message.channel.send('You dont have the correct permissions');
         if (!permissions.has('SPEAK')) return message.channel.send('You are not allowed to speak in this channel .');
-        
-        const arg = args.join(" ");
         let queue = client.distube.getQueue(message);
 
+
+        const arg = args.join(" ");
         if (['play', 'pl'].includes(cmd)){
-            client.distube.play(message, arg);
+            client.distube.play(voice_channel, arg,{
+                message,
+                textChannel:message.channel,
+                member : message.member
+            });
         }
         if (cmd == "pause") {
             client.distube.pause(message);
@@ -46,25 +51,27 @@ module.exports = {
            }
             
         }
-        if (cmd == "stop") {
-            if (!queue) return;
+        if (cmd == "stop") {            if (!queue) return;
             client.distube.stop(message);
             message.channel.send("Stopped ur music");
         }
-        if (cmd=="np"){
-            if (!queue) return message.channel.send(`There is nothing in the queue right now`)
+        if (cmd=="np" || cmd=="nowplaying"){
+            if (!queue) return message.channel.send(`There is nothing in playing right now`)
             s=queue.songs[0]
-            const np_embed = new MessageEmbed()
+            const np_embed = new EmbedBuilder()
                 .setColor('#0099ff')
-                .setAuthor("Now playing:",client.user.avatarURL())
+                .setAuthor({
+                    name: "Now playing:",
+                    iconURL: client.user.avatarURL()
+                })
                 .setThumbnail(s.thumbnail)
                 .setDescription(s.name+` - \`${s.formattedDuration}\``)
                 .setURL(s.url);
             if (s.member.nickname==null){
-                np_embed.setFooter(`Requested by: ${s.user.username}#${s.user.discriminator}`);
+                np_embed.setFooter({ text: `Requested by: ${s.user.username}#${s.user.discriminator}`});
             }
             else{
-                np_embed.setFooter(`Requested by: ${s.member.nickname} (${s.user.username}#${s.user.discriminator})`);
+                np_embed.setFooter({ text: `Requested by: ${s.member.nickname} (${s.user.username}#${s.user.discriminator})`});
             }
             message.channel.send({embeds:[np_embed]});
         }
@@ -85,9 +92,10 @@ module.exports = {
             }
         }
         if (['q', 'queue'].includes(cmd)) {
+            let queue = client.distube.getQueue(message);
             if(!queue) return;
             const queuestring = String(queue.songs.map((song, id) =>`**${id + 1}**. ${song.name} - \`${song.formattedDuration}\``).slice(0, 30).join("\n"));
-            const q_embed = new MessageEmbed()
+            const q_embed = new EmbedBuilder()
                 .setColor('#0099ff')
                 .setTitle('Current Queue:')
                 .setDescription(queuestring);

@@ -1,4 +1,4 @@
-const {MessageEmbed} = require('discord.js');
+const {EmbedBuilder} = require('discord.js');
 
 module.exports = {
     name: 'replay',
@@ -14,18 +14,24 @@ module.exports = {
             if(message.channel.id == deleted.channel.id){
             if(test.length > 0){
                 test=Array.from(deleted.attachments)
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                 .setColor('#0099ff')
                 .setImage(test[0][1].proxyURL)
-                .setAuthor(deleted.author.username,deleted.author.avatarURL({dynamic : true}))
+                .setAuthor({
+                    name: deleted.author.username,
+                    iconURL: deleted.author.avatarURL({dynamic : true})
+                })
                 .setDescription(deleted.content)
                 .setTimestamp();
                 message.channel.send({embeds: [embed]})
             }
             else{
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                 .setColor('#0099ff')
-                .setAuthor(deleted.author.username,deleted.author.avatarURL({dynamic : true}))
+                .setAuthor({
+                    name: deleted.author.username,
+                    iconURL: deleted.author.avatarURL({dynamic : true})
+                })
                 .setDescription(deleted.content)
                 .setTimestamp();
                 message.channel.send({embeds: [embed]})

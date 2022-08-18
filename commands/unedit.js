@@ -1,4 +1,4 @@
-const {MessageEmbed} = require('discord.js');
+const {EmbedBuilder} = require('discord.js');
 module.exports = {
     name: 'unedit',
     aliases: ['unedi'],
@@ -10,9 +10,12 @@ module.exports = {
           } 
         else {
             if(edited.channel.id===message.channel.id){
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                     .setColor('#0099ff')
-                    .setAuthor(edited.author.username,edited.author.avatarURL({dynamic : true}))
+                    .setAuthor({
+                        name: edited.author.username,
+                        iconURL: edited.author.avatarURL({dynamic : true})
+                    })
                     .setDescription(edited.content)
                     .setTimestamp();
                 message.channel.send({embeds: [embed]})

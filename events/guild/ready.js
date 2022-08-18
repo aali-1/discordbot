@@ -1,7 +1,8 @@
 module.exports = (Discord, client, message)=>{
     client.user.setActivity(`Currently in ${client.guilds.cache.size} servers`);
     const status = (queue) => `Filter: \`${queue.filter || "Off"}\` | Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "All Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
-    client.distube
+
+client.distube
     .on("playSong", (queue, song) => {
         let msg = `Playing \`${song.name}\` - \`${song.formattedDuration}\` requested by ${queue.songs[0].user.username}#${song.user.discriminator}`
         if (song.playlist) msg = `Playlist: ${song.playlist.name}\n${msg}`
