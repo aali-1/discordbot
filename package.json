@@ -2,7 +2,7 @@
   "name": "discordbot",
   "version": "1.0.0",
   "engines": {
-    "node": "16.11.x"
+    "node": "18.7.x"
   },
   "description": "making a discord bot",
   "main": "main.js",
@@ -15,7 +15,7 @@
     "@discordjs/opus": "^0.6.0",
     "@distube/soundcloud": "^0.2.2",
     "@distube/spotify": "^0.6.4",
-    "@distube/ytdl-core": "^4.9.1",
+    "@distube/ytdl-core": "^4.11.4",
     "discord.js": "^13.10.2",
     "distube": "^3.0.5",
     "ffmpeg-static": "^4.4.0",
