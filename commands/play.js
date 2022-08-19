@@ -65,7 +65,9 @@ module.exports = {
                     iconURL: client.user.avatarURL()
                 })
                 .setThumbnail(s.thumbnail)
-                .setDescription(s.name+` - \`${s.formattedDuration}\``)
+                .setDescription(s.name+` - \`${s.formattedDuration}\`\n
+                Song is \`${Math.round((queue.currentTime/s.duration)*100)}%\` complete.
+                `)
                 .setURL(s.url);
             if (s.member.nickname==null){
                 np_embed.setFooter({ text: `Requested by: ${s.user.username}#${s.user.discriminator}`});

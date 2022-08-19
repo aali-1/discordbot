@@ -1,5 +1,12 @@
 module.exports = (Discord, client, message)=>{
-    if((message.author.id==='338853337678086146' || message.author.id==='192714995946094593') && message.content.includes('ratio')) message.react('⬆');
+    if(message.content.includes(' ratio') || message.content=='ratio'){
+        if((message.author.id==='338853337678086146' || message.author.id==='192714995946094593')){
+                message.react('⬆');
+        }
+        else{
+            message.react('⬇')
+        }
+    }
     const prefix = '!';
     const prefix2 = '~';
     if(!message.content.startsWith(prefix) && !message.content.startsWith(prefix2) || message.author.bot) return;
