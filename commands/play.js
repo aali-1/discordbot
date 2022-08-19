@@ -3,7 +3,10 @@ const {EmbedBuilder} = require('discord.js');
 
 module.exports = {
     name: 'play',
-    aliases: ['stop','queue','skip','pl','q','3d', 'bassboost', 'echo', 'karaoke', 'nightcore', 'vaporwave','pause','resume','np','remove','nowplaying'],
+    aliases: ['stop','queue','skip','pl','q',
+    '3d', 'bassboost', 'echo', 'karaoke', 'nightcore', 
+    'vaporwave','pause','resume','np','remove',
+    'nowplaying','filters','clear'],
     description: "entire music bot",
     async execute(client, message, args, Discord, cmd){
     
@@ -29,7 +32,16 @@ module.exports = {
         }
         if (cmd == "resume") {
             client.distube.resume(message);
-            message.channel.send("resumed :arrow_forward:");
+            message.channel.send("Resumed :arrow_forward:");
+        }
+        if (cmd == 'clear'){
+            if(queue.songs.length<=1){
+                
+            }
+            else{
+                queue.songs.splice(1,queue.songs.length)
+            }
+            message.channel.send('Cleared')
         }
         if (cmd == "remove"){
             try{
@@ -51,9 +63,10 @@ module.exports = {
            }
             
         }
-        if (cmd == "stop") {            if (!queue) return;
+        if (cmd == "stop") {            
+            if (!queue) return;
             client.distube.stop(message);
-            message.channel.send("Stopped ur music");
+            message.reply({content:"Stopped the music",allowedMentions:{repliedUser:false}});
         }
         if (cmd=="np" || cmd=="nowplaying"){
             if (!queue) return message.channel.send(`There is nothing in playing right now`)
@@ -94,7 +107,6 @@ module.exports = {
             }
         }
         if (['q', 'queue'].includes(cmd)) {
-            let queue = client.distube.getQueue(message);
             if(!queue) return;
             const queuestring = String(queue.songs.map((song, id) =>`**${id + 1}**. ${song.name} - \`${song.formattedDuration}\``).slice(0, 30).join("\n"));
             const q_embed = new EmbedBuilder()
@@ -102,11 +114,31 @@ module.exports = {
                 .setTitle('Current Queue:')
                 .setDescription(queuestring);
             message.channel.send({embeds:[q_embed]})
+        }            
+        if (
+            ['3d','bassboost','echo','karaoke','nightcore','vaporwave',].includes(cmd)
+        ) {
+            console.log(queue.filters)
+            if(queue.filters.has(cmd)){
+                queue.filters.remove(cmd)
+            }
+            else queue.filters.add(cmd);
+            if(queue.filters==''){
+                message.channel.send('There are no filters')
+                return
+            }
+            message.channel.send(
+                `Current queue filters: ${queue.filters || 'Off'}`,
+            );
         }
-        if (['3d', 'bassboost', 'echo', 'karaoke', 'nightcore', 'vaporwave'].includes(cmd)) {
-            if (!queue) return message.channel.send(`There is nothing in the queue right now`)
-            let filter = client.distube.setFilter(message, cmd);
-            message.channel.send("Current queue filter: " + (filter || "Off"));
+        if(cmd=='filters'){
+            if(queue.filters==''){
+                message.channel.send('There are no filters')
+                return
+            }
+            message.channel.send(
+                `Current queue filters: ${queue.filters || 'Off'}`,
+            );
         }
 
     }
