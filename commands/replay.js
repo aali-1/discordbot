@@ -21,8 +21,10 @@ module.exports = {
                     name: deleted.author.username,
                     iconURL: deleted.author.avatarURL({dynamic : true})
                 })
-                .setDescription(deleted.content)
                 .setTimestamp();
+                if(deleted.content.length>0){
+                    embed.setDescription(deleted.author)
+                }
                 message.channel.send({embeds: [embed]})
             }
             else{
