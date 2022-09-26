@@ -38,5 +38,5 @@ client.events = new Discord.Collection();
     require(`./handlers/${handler}`)(client, Discord);
 })
 
-const tkn = String(process.env.DJS_TOKEN)
+const tkn = String(process.env.tok)
 client.login(tkn);
