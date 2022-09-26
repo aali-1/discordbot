@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const config = require('./config.json');
 //const config = require('./config.json');
 const client = new Discord.Client({partials:['Partials.Channel'],intents: [
     "Guilds", 
@@ -39,4 +40,4 @@ client.events = new Discord.Collection();
 })
 
 //test
-client.login(process.env.DJS_TOKEN);
+client.login(config.token);
