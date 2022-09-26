@@ -40,4 +40,4 @@ client.events = new Discord.Collection();
 })
 
 //test
-client.login(config.token);
+client.login("NzcxMTkyMDc1ODE4NzYyMjcw.GFKYcR.W3O8dKr5cb93UTZqTHkscCd8bWEFZIYGM8hVK8");
